@@ -6,7 +6,7 @@
 
 // Use import.meta.glob to fetch all markdown files from the parent directories
 // We exclude node_modules to be safe
-const loreGlob = import.meta.glob('../../../**/*.md', { as: 'raw', eager: true });
+const loreGlob = import.meta.glob('../../**/*.md', { as: 'raw', eager: true });
 
 const TIER_MAPPING = {
     '01_Tier_0': 0,               // The Silent Origin
