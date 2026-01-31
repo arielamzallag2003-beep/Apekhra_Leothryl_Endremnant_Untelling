@@ -1,0 +1,34 @@
+{
+    "name": "ArchiveTier",
+    "type": "object",
+    "properties": {
+        "tier_number": {
+            "type": "number",
+            "description": "Tier level (0-6)"
+        },
+        "title": {
+            "type": "string",
+            "description": "Name of this reality layer"
+        },
+        "subtitle": {
+            "type": "string",
+            "description": "Brief descriptor of the tier"
+        },
+        "lore_content": {
+            "type": "string",
+            "description": "Markdown content for this tier's lore"
+        },
+        "corruption_level": {
+            "type": "number",
+            "description": "0-100, affects visual distortion"
+        },
+        "glyph": {
+            "type": "string",
+            "description": "Symbol representing this tier"
+        }
+    },
+    "required": [
+        "tier_number",
+        "title"
+    ]
+}
