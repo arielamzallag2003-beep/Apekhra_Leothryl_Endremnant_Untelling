@@ -69,7 +69,7 @@ export default function TierContent({ activeTier, onTransitionStart }) {
                                     <button
                                         key={article.path}
                                         onClick={() => setSelectedArticleIndex(idx)}
-                                        className={`px-4 py-1.5 text-[10px] tracking-widest uppercase border transition-all ${idx === selectedArticleIndex
+                                        className={`px-4 py-1.5 text-[10px] tracking-widest uppercase border transition-all cursor-pointer ${idx === selectedArticleIndex
                                             ? 'bg-teal-400/10 border-teal-400/40 text-teal-300'
                                             : 'bg-white/[0.02] border-white/5 text-white/40 hover:text-white/70 hover:border-white/20'
                                             }`}

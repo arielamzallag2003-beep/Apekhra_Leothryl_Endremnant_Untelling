@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from 'framer-motion';
 export default function SeerCursor() {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
+    const [isHovering, setIsHovering] = useState(false);
 
     // Optimized spring settings for responsiveness
     const springConfig = { damping: 35, stiffness: 800, mass: 0.1 };
@@ -17,6 +18,18 @@ export default function SeerCursor() {
             mouseX.set(e.clientX - 12);
             mouseY.set(e.clientY - 12);
             if (!isVisible) setIsVisible(true);
+
+            // Detect if hovering over a clickable element
+            const target = e.target;
+            const isClickable =
+                target.tagName === 'BUTTON' ||
+                target.tagName === 'A' ||
+                target.closest('button') ||
+                target.closest('a') ||
+                window.getComputedStyle(target).cursor === 'pointer' ||
+                target.classList.contains('cursor-pointer');
+
+            setIsHovering(isClickable);
         };
 
         const handleMouseLeave = () => {
@@ -38,6 +51,9 @@ export default function SeerCursor() {
         <motion.div
             className="fixed pointer-events-none z-[9999] mix-blend-difference"
             style={{ x, y }}
+            animate={{
+                scale: isHovering ? 1.5 : 1,
+            }}
         >
             {/* Four constraining dots */}
             <div className="relative w-6 h-6">
@@ -53,7 +69,8 @@ export default function SeerCursor() {
                         style={{ left: dot.x, top: dot.y }}
                         animate={{
                             scale: [1, 1.2, 1],
-                            opacity: [0.8, 1, 0.8],
+                            opacity: isHovering ? 1 : [0.8, 1, 0.8],
+                            backgroundColor: isHovering ? '#2dd4bf' : '#ffffff',
                         }}
                         transition={{
                             duration: 1.5,
@@ -67,28 +84,28 @@ export default function SeerCursor() {
                 <svg className="absolute inset-0 w-6 h-6" style={{ left: 2, top: 2 }}>
                     <motion.line
                         x1="0" y1="0" x2="20" y2="0"
-                        stroke="rgba(255,255,255,0.1)"
+                        stroke={isHovering ? "rgba(45,212,191,0.4)" : "rgba(255,255,255,0.1)"}
                         strokeWidth="0.5"
                         animate={{ opacity: [0.1, 0.3, 0.1] }}
                         transition={{ duration: 2, repeat: Infinity }}
                     />
                     <motion.line
                         x1="0" y1="20" x2="20" y2="20"
-                        stroke="rgba(255,255,255,0.1)"
+                        stroke={isHovering ? "rgba(45,212,191,0.4)" : "rgba(255,255,255,0.1)"}
                         strokeWidth="0.5"
                         animate={{ opacity: [0.1, 0.3, 0.1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
                     />
                     <motion.line
                         x1="0" y1="0" x2="0" y2="20"
-                        stroke="rgba(255,255,255,0.1)"
+                        stroke={isHovering ? "rgba(45,212,191,0.4)" : "rgba(255,255,255,0.1)"}
                         strokeWidth="0.5"
                         animate={{ opacity: [0.1, 0.3, 0.1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: 0.25 }}
                     />
                     <motion.line
                         x1="20" y1="0" x2="20" y2="20"
-                        stroke="rgba(255,255,255,0.1)"
+                        stroke={isHovering ? "rgba(45,212,191,0.4)" : "rgba(255,255,255,0.1)"}
                         strokeWidth="0.5"
                         animate={{ opacity: [0.1, 0.3, 0.1] }}
                         transition={{ duration: 2, repeat: Infinity, delay: 0.75 }}

@@ -53,7 +53,7 @@ export default function AxiomWheel({ activeTier, onTierSelect }) {
                             onClick={() => onTierSelect(i)}
                             onMouseEnter={() => setHoveredTier(i)}
                             onMouseLeave={() => setHoveredTier(null)}
-                            className="absolute rounded-full border border-white/5 flex items-center justify-center transition-colors hover:border-teal-400/30"
+                            className="absolute rounded-full border border-white/5 flex items-center justify-center transition-colors hover:border-teal-400/30 cursor-pointer"
                             style={{
                                 width: size,
                                 height: size,

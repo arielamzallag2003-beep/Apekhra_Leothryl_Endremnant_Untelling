@@ -1,3 +1,4 @@
+/// <reference types="vite/client" />
 /**
  * Lore Service for the Untelling Archive
  * This service handles the dynamic loading and categorization of markdown files
